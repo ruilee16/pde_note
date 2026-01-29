@@ -22,9 +22,11 @@ We apply the Fourier transform with respect to the spatial variable $x$. Let $\m
 $$ \mathcal{F}[u_{xx}] = (2\pi i \xi)^2 \hat{u} = -4\pi^2 \xi^2 \hat{u} $$
 
 The PDE transforms into an Ordinary Differential Equation (ODE) in time $t$:
+
 $$ \hat{u}_{tt} + (2\pi c \xi)^2 \hat{u} = 0 $$
 
 Let $\omega = 2\pi c \xi$. The general solution to this harmonic oscillator equation is:
+
 $$ \hat{u}(\xi, t) = A(\xi) \cos(\omega t) + B(\xi) \sin(\omega t) $$
 
 ### Step 2: Applying Initial Conditions
@@ -35,6 +37,7 @@ We determine the coefficients $A(\xi)$ and $B(\xi)$ using the transformed initia
     $$ \hat{u}_t(\xi, 0) = \omega B(\xi) = \hat{\psi}(\xi) \implies B(\xi) = \frac{\hat{\psi}(\xi)}{\omega} = \frac{\hat{\psi}(\xi)}{2\pi c \xi} $$
 
 Substituting these back, the solution in the frequency domain is:
+
 $$ \hat{u}(\xi, t) = \hat{\phi}(\xi) \cos(2\pi c \xi t) + \hat{\psi}(\xi) \frac{\sin(2\pi c \xi t)}{2\pi c \xi} $$
 
 ### Step 3: Inverse Transform (Deriving d'Alembert's Formula)
@@ -42,16 +45,21 @@ We invert the solution term by term.
 
 **Term 1: The Cosine Term (Displacement)**
 Using Euler's formula $\cos(\theta) = \frac{e^{i\theta} + e^{-i\theta}}{2}$:
+
 $$ \hat{\phi}(\xi) \cos(2\pi c \xi t) = \frac{1}{2} \hat{\phi}(\xi) \left( e^{2\pi i \xi (ct)} + e^{-2\pi i \xi (ct)} \right) $$
 By the **Shift Theorem** $\mathcal{F}^{-1}[e^{2\pi i \xi h} \hat{f}(\xi)] = f(x+h)$, the inverse transform is:
+
 $$ \frac{1}{2} [\phi(x+ct) + \phi(x-ct)] $$
 
 **Term 2: The Sine Term (Velocity)**
 Recall the Fourier transform of the indicator (box) function on the interval $(-a, a)$:
+
 $$ \mathcal{F}[\mathbb{1}_{(-a,a)}](\xi) = \frac{\sin(2\pi a \xi)}{\pi \xi} $$
 We manipulate the sine term to match this form. Let $a = ct$:
+
 $$ \hat{\psi}(\xi) \frac{\sin(2\pi c t \xi)}{2\pi c \xi} = \hat{\psi}(\xi) \frac{1}{2c} \underbrace{\frac{\sin(2\pi (ct) \xi)}{\pi \xi}}_{\text{FT of } \mathbb{1}_{(-ct, ct)}} $$
 Using the **Convolution Theorem** $\mathcal{F}^{-1}[\hat{f} \cdot \hat{g}] = f * g$:
+
 $$ \mathcal{F}^{-1} \left[ \hat{\psi} \cdot \frac{1}{2c} \widehat{\mathbb{1}_{(-ct, ct)}} \right] = \psi * \left( \frac{1}{2c} \mathbb{1}_{(-ct, ct)} \right) $$
 Writing out the convolution integral:
 $$ \frac{1}{2c} \int_{-\infty}^{\infty} \mathbb{1}_{(-ct, ct)}(y) \psi(x-y) \, dy $$
