@@ -18,6 +18,7 @@ $$
 
 ### Step 1: Spatial Fourier Transform
 We apply the Fourier transform with respect to the spatial variable $x$. Let $\mathcal{F}[u] = \hat{u}$. The transform converts spatial derivatives into algebraic multiplication:
+
 $$ \mathcal{F}[u_{xx}] = (2\pi i \xi)^2 \hat{u} = -4\pi^2 \xi^2 \hat{u} $$
 
 The PDE transforms into an Ordinary Differential Equation (ODE) in time $t$:
