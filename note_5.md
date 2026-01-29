@@ -32,8 +32,10 @@ $$ \hat{u}(\xi, t) = A(\xi) \cos(\omega t) + B(\xi) \sin(\omega t) $$
 ### Step 2: Applying Initial Conditions
 We determine the coefficients $A(\xi)$ and $B(\xi)$ using the transformed initial conditions:
 1.  **At $t=0$:**
+   
     $$ \hat{u}(\xi, 0) = A(\xi) = \hat{\phi}(\xi) $$
-2.  **Derivative at $t=0$:**
+3.  **Derivative at $t=0$:**
+
     $$ \hat{u}_t(\xi, 0) = \omega B(\xi) = \hat{\psi}(\xi) \implies B(\xi) = \frac{\hat{\psi}(\xi)}{\omega} = \frac{\hat{\psi}(\xi)}{2\pi c \xi} $$
 
 Substituting these back, the solution in the frequency domain is:
@@ -62,12 +64,15 @@ Using the **Convolution Theorem** $\mathcal{F}^{-1}[\hat{f} \cdot \hat{g}] = f *
 
 $$ \mathcal{F}^{-1} \left[ \hat{\psi} \cdot \frac{1}{2c} \widehat{\mathbb{1}_{(-ct, ct)}} \right] = \psi * \left( \frac{1}{2c} \mathbb{1}_{(-ct, ct)} \right) $$
 Writing out the convolution integral:
+
 $$ \frac{1}{2c} \int_{-\infty}^{\infty} \mathbb{1}_{(-ct, ct)}(y) \psi(x-y) \, dy $$
 Let $z = x-y$. The limits of integration become $x-ct$ to $x+ct$:
+
 $$ = \frac{1}{2c} \int_{x-ct}^{x+ct} \psi(z) \, dz $$
 
 ### Final Result: d'Alembert's Formula
 Combining both parts:
+
 $$ u(x,t) = \frac{\phi(x+ct) + \phi(x-ct)}{2} + \frac{1}{2c} \int_{x-ct}^{x+ct} \psi(z) \, dz $$
 
 ---
@@ -75,6 +80,7 @@ $$ u(x,t) = \frac{\phi(x+ct) + \phi(x-ct)}{2} + \frac{1}{2c} \int_{x-ct}^{x+ct} 
 ## 2. The Non-Homogeneous Problem
 
 We now solve the forced wave equation with zero initial conditions:
+
 $$
 \begin{cases}
 u_{tt} - c^2 u_{xx} = F(x,t) \\
@@ -84,20 +90,25 @@ $$
 
 ### Step 1: Frequency Domain ODE
 Transforming the PDE with respect to $x$:
+
 $$ \hat{u}_{tt} + \omega^2 \hat{u} = \hat{F}(\xi, t) $$
 where $\omega = 2\pi c \xi$. This is a non-homogeneous harmonic oscillator.
 
 ### Step 2: Variation of Parameters
 We seek a particular solution of the form:
+
 $$ \hat{u}(t) = C_1(t) \cos(\omega t) + C_2(t) \sin(\omega t) $$
 The derivatives of the parameters must satisfy the system:
 1. $C_1' \cos(\omega t) + C_2' \sin(\omega t) = 0$
 2. $-C_1' \omega \sin(\omega t) + C_2' \omega \cos(\omega t) = \hat{F}(\xi, t)$
 
 Solving for $C_1'$ and $C_2'$:
+
 $$ C_1'(t) = -\frac{\hat{F}}{\omega} \sin(\omega t), \quad C_2'(t) = \frac{\hat{F}}{\omega} \cos(\omega t) $$
 Integrating from $0$ to $t$ (using dummy variable $s$):
+
 $$ C_1(t) = -\int_0^t \frac{\hat{F}(\xi, s)}{\omega} \sin(\omega s) \, ds $$
+
 $$ C_2(t) = \int_0^t \frac{\hat{F}(\xi, s)}{\omega} \cos(\omega s) \, ds $$
 
 Substitute back into the ansatz and use the identity $\sin(A)\cos(B) - \cos(A)\sin(B) = \sin(A-B)$:
